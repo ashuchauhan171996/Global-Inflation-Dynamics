@@ -1,0 +1,20 @@
+.inline-container {
+    display: flex; /* Use a flex container to place elements horizontally */
+    align-items: center; /* Center vertically within the container */
+    margin: 20pt;
+  }
+
+  .fixed-width-select {
+    width: 900px; /* Set your desired fixed width */
+  }
+
+.fetch-button {
+    background-color: #03DAC6;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 4pt;
+    margin-left: 10pt;
+    max-height: 30pt;
+    /* Add additional styling as needed */
+  }

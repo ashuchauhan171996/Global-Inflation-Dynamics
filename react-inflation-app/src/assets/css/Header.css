@@ -1,0 +1,31 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #333;
+    color: #fff;
+    padding: 1rem;
+  }
+  
+  .header-heading {
+    margin: 0;
+    font-size: 20pt;
+  }
+  
+  .header-links ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  
+  .header-links li {
+    margin-right: 1rem;
+  }
+  
+  .header-links a {
+    text-decoration: none;
+    color: #fff;
+  }
+  
