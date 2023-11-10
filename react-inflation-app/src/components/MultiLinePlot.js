@@ -6,7 +6,9 @@ function MultiLinePlot({ data }) {
   const chartData = countries.map((country) => {
     const values = [];
     for (let year = 1970; year < 2023; year++) {
-      values.push(data[country][`year${year}`]);
+      // values.push(data[country][`year${year}`]);
+      const cappedValue = Math.min(data[country][`year${year}`], 40);
+      values.push(cappedValue);
     }
     return {
       name: country,
@@ -34,8 +36,8 @@ function MultiLinePlot({ data }) {
           colors: 'white', // Y-axis label color
         },
       },
-      max: 20,
-      min: -2,
+      // max: 20,
+      // min: -2,
     },
     legend: {
         position: "bottom",

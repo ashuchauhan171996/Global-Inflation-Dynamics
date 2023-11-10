@@ -1,0 +1,11 @@
+.cartogram-image {
+    width: 1200px; /* Adjust this value to your desired width */
+    height: auto; /* The height will adjust proportionally based on the width */
+    display: block;
+    margin: 0 auto;
+  }
+
+  input[type="range"] {
+    width: 80%; /* Adjust this value to change the length */
+  }
+  

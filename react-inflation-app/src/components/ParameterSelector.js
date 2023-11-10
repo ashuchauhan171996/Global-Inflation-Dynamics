@@ -10,6 +10,10 @@ function ParameterSelector({ parameterOptions, onDataFetched }) {
     setSelectedParameters(selectedOptions);
   };
 
+  const handleSelectAll = () => {
+    setSelectedParameters(parameterOptions);
+  };
+
   const fetchData = () => {
     const selectedParameterValues = selectedParameters.map((param) => param.value);
     axios.post('/get_inflation_data', { selectedParameters: selectedParameterValues })
@@ -29,14 +33,17 @@ function ParameterSelector({ parameterOptions, onDataFetched }) {
   return (
     <div className='body-text-black'>
     <div className="inline-container">
+      <button className="fetch-button" onClick={handleSelectAll}>Select All</button>
       <Select
         options={parameterOptions}
         isMulti
+        closeMenuOnSelect={false}
         onChange={handleParameterChange}
         value={selectedParameters}
         className="fixed-width-select"
       />
       <button className="fetch-button" onClick={fetchData}>Fetch Data</button>
+      
       </div>
       </div>
   );

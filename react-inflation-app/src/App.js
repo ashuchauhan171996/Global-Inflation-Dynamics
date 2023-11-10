@@ -3,6 +3,7 @@ import axios from 'axios';
 import './assets/css/App.css';
 import ParameterSelector from './components/ParameterSelector'; 
 import MultiLinePlot from './components/MultiLinePlot'; 
+import Cartogram from './components/Cartogram'; 
 import Header from './components/Header'; 
 
 function App() {
@@ -21,32 +22,44 @@ function App() {
   //   // Add options specific to this instance
   // ];
 
-  const [parameterOptions1, setParameterOptions1] = useState([]);
+  const [parameterOptions, setParameterOptions] = useState([]);
+  const [topparameterOptions, settopParameterOptions] = useState([]);
 
   useEffect(() => {
     // Make an HTTP GET request to fetch parameter options from the backend
     axios.get('/country_options')
       .then((response) => {
-        setParameterOptions1(response.data);
+        setParameterOptions(response.data);
       })
       .catch((error) => {
         console.error('Error fetching parameter options:', error);
       });
   }, []);
 
+  useEffect(() => {
+    // Make an HTTP GET request to fetch parameter options from the backend
+    axios.get('/top_country_options')
+      .then((response) => {
+        settopParameterOptions(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching top parameter options:', error);
+      });
+  }, []);
+
+
+
   return (
     <div>
       <Header/>
-      <ParameterSelector parameterOptions={parameterOptions1} onDataFetched={setData1} />
-      {/* <pre>{JSON.stringify(data1, null, 2)}</pre> */}
-      <div>
-      <MultiLinePlot data={data1} />
-      </div>
+      <h5>Inflation variation with time</h5>
+      <Cartogram/>
       <hr />
-      {/* <ParameterSelector parameterOptions={parameterOptions2} onDataFetched={setData2} />
+      <h5>Inflation comparision between countries</h5>
+      <ParameterSelector parameterOptions={topparameterOptions} onDataFetched={setData2} />
       <div>
       <MultiLinePlot data={data2} />
-      </div> */}
+      </div>
     </div>
   );
 }
