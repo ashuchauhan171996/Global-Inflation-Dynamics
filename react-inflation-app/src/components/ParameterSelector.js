@@ -3,7 +3,7 @@ import Select from 'react-select';
 import axios from 'axios';
 import '../assets/css/ParameterSelector.css';
 
-function ParameterSelector({ parameterOptions, onDataFetched }) {
+function ParameterSelector({ parameterOptions, onDataFetched , route}) {
   const [selectedParameters, setSelectedParameters] = useState([]);
 
   const handleParameterChange = (selectedOptions) => {
@@ -16,7 +16,7 @@ function ParameterSelector({ parameterOptions, onDataFetched }) {
 
   const fetchData = () => {
     const selectedParameterValues = selectedParameters.map((param) => param.value);
-    axios.post('/get_inflation_data', { selectedParameters: selectedParameterValues })
+    axios.post(route, { selectedParameters: selectedParameterValues })
       .then((response) => {
         // setData(response.data);
         onDataFetched(response.data); // Pass data to the parent component

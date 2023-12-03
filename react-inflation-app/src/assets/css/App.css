@@ -39,6 +39,7 @@
 
 body {
   background-color: rgb(27, 26, 26); 
+  /* background-color: #000; */
   color: #fff;
   /* display: flex;  */
   /* justify-content: center; Center horizontally */
@@ -48,6 +49,19 @@ body {
 
 .body-text-black{
   color: #000;
+}
+
+.body-component{
+  margin-left: 10;
+  margin-right: 10;
+  margin-top: 10;
+}
+
+.body-component-heading{
+  margin-left: 20pt;
+  margin-top: 10pt;
+  color: #f7ad19;;
+  
 }
 
 

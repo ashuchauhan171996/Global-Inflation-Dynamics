@@ -10,7 +10,8 @@ const Cartogram = () => {
   
   return (
     <div>
-        <span style={{ marginRight: '10px' }}>Year: {selectedYear}</span>
+      <div className='scroll'>
+      <span style={{ marginRight: '10px' }}>Year: {selectedYear}</span>
       <input
         type="range"
         min={1970}
@@ -19,6 +20,7 @@ const Cartogram = () => {
         onChange={handleYearChange}
         style={{ width: '80%' }}
       />
+      </div>
       <br />
       <img
         id="cartogram-image"
