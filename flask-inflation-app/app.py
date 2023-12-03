@@ -141,7 +141,7 @@ def index():
     # display_records('parameter_table')
     # print_schema('inflation_table')
     
-    return 'Hello Ashutosh'
+    return 'Hello Ashutosh and Bhavya!!'
 
 @app.route('/country_options', methods=['GET'])
 def get_countries_option():
@@ -158,8 +158,21 @@ def get_countries_option():
     print(parameter_options[0])
     return jsonify(parameter_options)
 
-@app.route('/get_inflation_data', methods=['POST'])
-def get_inflation_data():
+@app.route('/top_country_options', methods=['GET'])
+def get_top_countries_option():
+    countries = ['United States', 'China','Japan','Germany','India','United Kingdom','France','Australia','Russian Federation','Spain','Netherlands','Saudi Arabia','Switzerland','Sweden','Belgium','Thailand','Austria','Norway']
+    parameter_options = []
+    # print(countries)
+    for country in countries:
+        dic = {}
+        dic['value'] = country
+        dic['label'] = country
+        parameter_options.append(dic)
+    print(parameter_options[0])
+    return jsonify(parameter_options)
+
+@app.route('/get_multiline_data', methods=['POST'])
+def get_multiline_data():
     selected_countries = request.json['selectedParameters']
     series_name = "Headline Consumer Price Inflation"
     data = defaultdict(lambda: defaultdict(list))
@@ -178,4 +191,26 @@ def get_inflation_data():
             data[country]['year' +str(year)] = filtered_data[0][3+i]
         
         # print(data)
+    return jsonify(data)
+
+@app.route('/get_boxplot_data', methods=['POST'])
+def get_boxplot_data():
+    selected_countries = request.json['selectedParameters']
+    # print(selected_countries)
+    series_name = "Headline Consumer Price Inflation"
+    data = defaultdict(list)
+    years = ""
+    for year in range(2012,2023):
+        years += ',year' + str(year) + " "
+    # print(years)
+    for country in selected_countries:
+        query = str(f"SELECT country, series_name {years} FROM inflation_table WHERE country = '{country}' AND series_name = '{series_name}';")
+        filtered_data = return_records(query)
+        # data[country] = filtered_data[0][0]
+
+        for year in range(2012,2023):
+            i = year - 2012
+            data[country].append(filtered_data[0][2+i])
+        
+        print(data)
     return jsonify(data)
