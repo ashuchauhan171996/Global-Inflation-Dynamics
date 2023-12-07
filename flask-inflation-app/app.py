@@ -171,6 +171,19 @@ def get_top_countries_option():
     print(parameter_options[0])
     return jsonify(parameter_options)
 
+@app.route('/scatter_options', methods=['GET'])
+def scatter_option():
+    countries = ['United States', 'China','Japan','Germany','India','France']
+    parameter_options = []
+    # print(countries)
+    for country in countries:
+        dic = {}
+        dic['value'] = country
+        dic['label'] = country
+        parameter_options.append(dic)
+    print(parameter_options[0])
+    return jsonify(parameter_options)
+
 @app.route('/get_multiline_data', methods=['POST'])
 def get_multiline_data():
     selected_countries = request.json['selectedParameters']
@@ -214,3 +227,111 @@ def get_boxplot_data():
         
         print(data)
     return jsonify(data)
+
+@app.route('/get_top5economies_data', methods=['POST'])
+def get_top5economies_data():
+    selected_countries = ['United States', 'China', 'Japan', 'Germany', 'India']
+    series_name = "Headline Consumer Price Inflation"
+    data = defaultdict(lambda: defaultdict(list))
+    years = ""
+    for year in range(2000,2023):
+        years += ',year' + str(year) + " "
+    # print(years)
+    for country in selected_countries:
+        query = str(f"SELECT country_code, country, series_name {years} FROM inflation_table WHERE country = '{country}' AND series_name = '{series_name}';")
+        filtered_data = return_records(query)
+        data[country]['country'] = filtered_data[0][0]
+        data[country]['series_name'] = filtered_data[0][1]
+        for year in range(2000,2023):
+            i = year - 2000
+            data[country]['year' +str(year)] = filtered_data[0][2+i]
+        
+        print(data)
+    return jsonify(data)
+
+
+@app.route('/indicator_options', methods=['GET'])
+def get_indicator_options():
+
+    indicators = ['Birth rate, crude (per 1,000 people)','Death rate, crude (per 1,000 people)','Consumer price index (2010 = 100)','GDP (current US$)','GDP per capita (current US$)', 'GDP per capita growth (annual %)','Exports of goods and services (current US$)','Foreign direct investment, net (BoP, current US$)','Foreign direct investment, net inflows (BoP, current US$)','Foreign direct investment, net outflows (BoP, current US$)','Suicide mortality rate (per 100,000 population)','Suicide mortality rate, female (per 100,000 female population)','Suicide mortality rate, male (per 100,000 male population)','Employment in agriculture (% of total employment) (modeled ILO estimate)','Employment in industry (% of total employment) (modeled ILO estimate)','Employment in services (% of total employment) (modeled ILO estimate)']
+    parameter_options = []
+    for para in indicators:
+        dic = {}
+        dic['value'] = para
+        dic['label'] = para
+        parameter_options.append(dic)
+    print(parameter_options[0])
+    return jsonify(parameter_options)
+
+@app.route('/get_indicator_data', methods=['POST'])
+def get_indicator_data():
+    
+    selected_indicator = request.json['selectedParameters1']
+    selected_country = request.json['selectedParameters2']
+    series_name = "Headline Consumer Price Inflation"
+    
+    data = defaultdict(lambda: defaultdict(list))
+    years = ""
+    for year in range(1970,2023):
+        years += ',year' + str(year) + " "
+    # print(years)
+    
+    
+    query = str(f"SELECT country, series_name {years} FROM inflation_table WHERE country = '{selected_country[0]}' AND series_name = '{series_name}';")
+    filtered_data = return_records(query)
+    data['inflation']['country'] = filtered_data[0][0]
+    data['inflation']['series_name'] = filtered_data[0][1]
+    for year in range(1970,2023):
+        i = year - 1970
+        data['inflation']['year' +str(year)] = filtered_data[0][2+i]
+        
+    for indicator in selected_indicator:
+        query = str(f"SELECT country, series_name {years} FROM parameter_table WHERE country = '{selected_country[0]}' AND series_name = '{indicator}';")
+        filtered_data = return_records(query)
+        data[indicator]['country'] = filtered_data[0][0]
+        data[indicator]['series_name'] = filtered_data[0][1]
+        for year in range(1970,2023):
+            i = year - 1970
+            data[indicator]['year' +str(year)] = filtered_data[0][2+i]
+        
+        # print(data)
+    return jsonify(data)
+
+
+@app.route('/get_correlation_data', methods=['POST'])
+def get_correlation_data():
+    
+    selected_indicator = request.json['selectedParameters1']
+    selected_country = request.json['selectedParameters2']
+    series_name = "Headline Consumer Price Inflation"
+    
+    data = defaultdict(list)
+    years = ""
+    for year in range(1970,2023):
+        years += ',year' + str(year) + " "
+    # print(years)
+    
+    
+    query = str(f"SELECT country, series_name {years} FROM inflation_table WHERE country = '{selected_country[0]}' AND series_name = '{series_name}';")
+    filtered_data = return_records(query)
+    for year in range(1970,2023):
+        i = year - 1970
+        data['inflation'].append(filtered_data[0][2+i])
+        
+    for indicator in selected_indicator:
+        query = str(f"SELECT country, series_name {years} FROM parameter_table WHERE country = '{selected_country[0]}' AND series_name = '{indicator}';")
+        filtered_data = return_records(query)
+        for year in range(1970,2023):
+            i = year - 1970
+            data[indicator].append(filtered_data[0][2+i])
+        
+        # print(data)
+    return jsonify(data)
+
+@app.route('/get_scatter_data', methods=['POST'])
+def get_scatter_data():
+    
+    selected_country = request.json['selectedParameters']
+    data = { 'selected_country': selected_country}
+    return jsonify(data)
+
