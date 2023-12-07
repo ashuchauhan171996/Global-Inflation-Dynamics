@@ -213,7 +213,7 @@ def get_boxplot_data():
     series_name = "Headline Consumer Price Inflation"
     data = defaultdict(list)
     years = ""
-    for year in range(2012,2023):
+    for year in range(1970,2023):
         years += ',year' + str(year) + " "
     # print(years)
     for country in selected_countries:
@@ -221,8 +221,8 @@ def get_boxplot_data():
         filtered_data = return_records(query)
         # data[country] = filtered_data[0][0]
 
-        for year in range(2012,2023):
-            i = year - 2012
+        for year in range(1970,2023):
+            i = year - 1970
             data[country].append(filtered_data[0][2+i])
         
         print(data)

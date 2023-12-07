@@ -91,7 +91,7 @@ function App() {
 
       <hr />
       <div className='body-component-heading'>
-      <h5>C. Inflation variation in last 10 years (2012 - 2022) using Boxplot</h5>
+      <h5>C. Inflation variation in countries (1970 - 2022) using Boxplot</h5>
       </div>
       <ParameterSelector parameterOptions={boxplotOptions} onDataFetched={setData_boxplot} route='/get_boxplot_data' />
       <div className='body-component'>
@@ -110,6 +110,8 @@ function App() {
       <div className='body-component-heading'>
       <h5>E. Correlation of Inflation with other Indicators</h5>
       </div>
+      <p>* Correlation between Inflation, Consumer Price Index, GDP and FDI netinflows</p>
+      
       <ScatterPlotSingle/>
 
 

@@ -48,7 +48,7 @@ function BoxPlot({ data }) {
           colors: 'white', // Y-axis label color
         },
       },
-      max: 15,
+      max: 20,
       min: -1,
     },
     legend: {
