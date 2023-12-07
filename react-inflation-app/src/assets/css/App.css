@@ -60,8 +60,11 @@ body {
 .body-component-heading{
   margin-left: 20pt;
   margin-top: 10pt;
-  color: #f7ad19;;
+  color: #f7ad19;
   
+}
+.bold-color {
+ color: #6767dc;
 }
 
 
