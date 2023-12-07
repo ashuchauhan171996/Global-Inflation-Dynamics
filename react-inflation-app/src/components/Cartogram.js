@@ -11,21 +11,22 @@ const Cartogram = () => {
   return (
     <div>
       <div className='scroll'>
-      <span style={{ marginRight: '10px' }}>Year: {selectedYear}</span>
+      {/* <span style={{ marginRight: '10px' }}>Year: {selectedYear}</span> */}
       <input
         type="range"
         min={1970}
-        max={1980}
+        max={2022}
         value={selectedYear}
         onChange={handleYearChange}
         style={{ width: '80%' }}
       />
       </div>
-      <br />
+      <div className='selected-year'><span style={{ marginRight: '10px' }}>Inflation for Year: {selectedYear}</span></div>
+      {/* <br /> */}
       <img
         id="cartogram-image"
         alt={`Cartogram for ${selectedYear}`}
-        src = {require(`../assets/images/${selectedYear}.png`)}
+        src = {require(`../assets/images/newplot${selectedYear}.png`)}
         // alt={`Cartogram for ${selectedYear}`}
         className="cartogram-image"
       />

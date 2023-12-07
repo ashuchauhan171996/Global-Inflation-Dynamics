@@ -1,22 +1,21 @@
-.cartogram-image {
-    width: 1200px; /* Adjust this value to your desired width */
+.scatter-image {
+    width: 900px; /* Adjust this value to your desired width */
     height: auto; /* The height will adjust proportionally based on the width */
     display: block;
     margin: 0 auto;
   }
 
-  input[type="range"] {
-    width: 80%; /* Adjust this value to change the length */
-  }
 
-  .scroll {
+  .scroll1 {
     margin-left: 50pt;
-    margin-top: 20pt;
+    margin-top: 5pt;
   }
 
   .selected-year {
     margin-left: 40%;
     font-size: 15pt;
+    margin-top: 5pt;
+    
   }
 
   .inline-container {
@@ -25,8 +24,8 @@
     margin: 20pt;
   }
 
-  .fixed-width-select {
-    width: 900px; /* Set your desired fixed width */
+  .fixed-width-select3 {
+    width: 30%; 
   }
 
 .fetch-button {

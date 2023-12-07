@@ -9,16 +9,21 @@
     "apexcharts": "^3.44.0",
     "axios": "^1.6.0",
     "bootstrap": "^5.3.2",
+    "buffer": "^6.0.3",
+    "correlation": "^1.0.0",
+    "mathjs": "^12.1.0",
     "plotly.js": "^2.27.1",
     "react": "^18.2.0",
     "react-apexcharts": "^1.4.1",
     "react-dom": "^18.2.0",
+    "react-heatmap-grid": "^0.9.0",
     "react-icons": "^4.12.0",
     "react-multiple-checkbox-select": "^0.0.7",
     "react-multiselect-checkboxes": "^0.1.1",
     "react-plotly.js": "^2.6.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.7.7",
+    "simple-statistics": "^7.8.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -46,5 +51,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5000"
+  "proxy": "http://127.0.0.1:5000"
 }

@@ -41,6 +41,7 @@ function ParameterSelector({ parameterOptions, onDataFetched , route}) {
         onChange={handleParameterChange}
         value={selectedParameters}
         className="fixed-width-select"
+        placeholder= 'Select countries'
       />
       <button className="fetch-button" onClick={fetchData}>Fetch Data</button>
       

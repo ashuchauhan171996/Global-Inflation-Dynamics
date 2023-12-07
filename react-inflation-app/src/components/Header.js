@@ -7,13 +7,13 @@ function Header() {
     <header className="header-container">
       <h1 className="header-heading"><BiWorld /> Global Inflation Dynamic </h1>
       
-      <nav className="header-links">
+      {/* <nav className="header-links">
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/contact">Contact</a></li>
         </ul>
-      </nav>
+      </nav> */}
     </header>
   );
 }
