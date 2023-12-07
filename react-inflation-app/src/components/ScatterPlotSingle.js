@@ -37,7 +37,7 @@ const ScatterPlotSingle = () => {
       />
     </div>
       <div className='selected-year'>
-        <span style={{ marginRight: '10px' }}>Inflation for Year: {selectedCountry.label}</span>
+        <span style={{ marginRight: '10px' }}>Correlation matrix for: {selectedCountry.label}</span>
       </div>
       <img
         id="cartogram-image"
